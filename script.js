@@ -34,20 +34,22 @@ function searchHandler(e) {
 		showSuggestions([], '');
 		return;
 	}
-	const searchResults = search(inputVal)
-	showSuggestions(searchResults, inputVal)
-	console.log(search(inputVal)); //REMOVE CONSOLE.LOG ONCE WE HAVE LI WORKING
+	const searchResults = search(inputVal) //call search using the input passed and save all matches to a variable
+	showSuggestions(searchResults, inputVal) //call showSuggestions to add search mathching values to a list
 }
 
 function showSuggestions(results, inputVal) {
 	// TODO
 	suggestions.innerHTML = '';
+	//call forEach on all matching fruits to add them to a list item
 	results.forEach(fruit => {
 		const li = document.createElement('li');
 		li.textContent = fruit;
-		suggestions.append(li);
+		suggestions.append(li); //append list items to div class 'suggestions'
 	});
 
+	//if statement that checks if the input box is empty
+	//if it is, removes the list of fruits from the page
 	if(results.length > 0) {
 		suggestions.classList.add('has-suggestions');
 	} else {
@@ -57,9 +59,8 @@ function showSuggestions(results, inputVal) {
 
 function useSuggestion(e) {
 	// TODO
-	const clickedValue = e.target.textContent;
-	console.log("You clicked on: ", clickedValue);
-	input.value = clickedValue;
+	const clickedValue = e.target.textContent; //gets whatever list value is clicked on
+	input.value = clickedValue; //adds value to input box
 }
 
 input.addEventListener('keyup', searchHandler);
